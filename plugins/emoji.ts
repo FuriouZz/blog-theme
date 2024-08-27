@@ -11,29 +11,29 @@ span.emoji {
 }`;
 
 interface IToken {
-	markup: string;
-	content: string;
+  markup: string;
+  content: string;
 }
 
 export default function emoji() {
-	return (site: Site) => {
-		site.hooks.addMarkdownItPlugin(full, {
-			defs: { ...emojies_defs, dino: "🦕" },
-		});
+  return (site: Site) => {
+    site.hooks.addMarkdownItPlugin(full, {
+      defs: { ...emojies_defs, dino: "🦕" },
+    });
 
-		site.hooks.addMarkdownItRule("emoji", (tokens: IToken[], idx: number) => {
-			return `<span class="emoji emoji_${tokens[idx].markup}">${
-				tokens[idx].content
-			}</span>`;
-		});
+    site.hooks.addMarkdownItRule("emoji", (tokens: IToken[], idx: number) => {
+      return `<span class="emoji emoji_${tokens[idx].markup}">${
+        tokens[idx].content
+      }</span>`;
+    });
 
-		site.process([".html"], (pages) => {
-			for (const page of pages) {
-				const style = page.document?.createElement("style");
-				if (!style) return;
-				style.textContent = notoCSS;
-				page.document?.head.append(style);
-			}
-		});
-	};
+    site.process([".html"], (pages) => {
+      for (const page of pages) {
+        const style = page.document?.createElement("style");
+        if (!style) return;
+        style.textContent = notoCSS;
+        page.document?.head.append(style);
+      }
+    });
+  };
 }

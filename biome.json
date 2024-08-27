@@ -1,0 +1,10 @@
+{
+  "formatter": {
+    "identStyle": "space"
+  },
+  "json": {
+    "formatter": {
+      "enabled": true
+    }
+  }
+}
